@@ -61,11 +61,11 @@ export const Signup = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col pb-10">
         <div className="space-y-1 mb-2">
-          <Input label="Full Name" required {...register('fullName')} error={errors.fullName?.message} />
-          <Input label="Phone number" required {...register('phone')} error={errors.phone?.message} />
-          <Input label="Email address" type="email" required {...register('email')} error={errors.email?.message} />
-          <Input label="Password" type="password" required {...register('password')} error={errors.password?.message} />
-          <Input label="Company name" required {...register('company')} error={errors.company?.message} />
+          <Input label="Full Name" placeholder="Enter full name" required {...register('fullName')} error={errors.fullName?.message} />
+          <Input label="Phone number" placeholder="Enter phone number" required {...register('phone')} error={errors.phone?.message} />
+          <Input label="Email address" type="email" placeholder="Enter email address" required {...register('email')} error={errors.email?.message} />
+          <Input label="Password" type="password" placeholder="Enter password" required {...register('password')} error={errors.password?.message} />
+          <Input label="Company name" placeholder="Enter company name" required {...register('company')} error={errors.company?.message} />
           
           <div className="pt-2">
             <p className="text-[13px] font-semibold text-[#1a1a1a] mb-2">Are you an Agency? <span className="text-red-500">*</span></p>

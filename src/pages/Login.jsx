@@ -58,12 +58,14 @@ export const Login = () => {
           <Input 
             label="Email Address" 
             type="email" 
+            placeholder="Enter email address"
             {...register('email')} 
             error={errors.email?.message} 
           />
           <Input 
             label="Password" 
             type="password" 
+            placeholder="Enter password"
             {...register('password')} 
             error={errors.password?.message} 
           />

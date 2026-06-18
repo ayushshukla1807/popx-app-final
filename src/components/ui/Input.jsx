@@ -9,14 +9,13 @@ export const Input = forwardRef(({ label, error, type = 'text', ...props }, ref)
           id={id}
           ref={ref}
           type={type}
-          className="peer w-full bg-transparent text-[#2c2c2c] outline-none text-[15px] placeholder-transparent"
-          placeholder={label}
+          className="w-full bg-transparent text-[#2c2c2c] outline-none text-[15px] placeholder-[#cbcbcb]"
           {...props}
         />
-        {/* True floating label exactly as requested */}
+        {/* Static floating label exactly as in Adobe XD design */}
         <label 
           htmlFor={id} 
-          className={`absolute -top-2.5 left-3 bg-white px-1 text-xs font-medium transition-all peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-[#8c8c8c] peer-placeholder-shown:top-3.5 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-brand cursor-text pointer-events-none ${error ? 'text-red-500' : 'text-brand'}`}
+          className={`absolute -top-2.5 left-3 bg-white px-1 text-[13px] font-semibold cursor-text pointer-events-none ${error ? 'text-red-500' : 'text-brand'}`}
         >
           {label} {props.required && <span className="text-red-500">*</span>}
         </label>
