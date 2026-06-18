@@ -19,6 +19,7 @@ export const Login = () => {
   });
 
   const onSubmit = async (data) => {
+    localStorage.setItem('demo_email', data.email);
     const { error } = await signIn({ email: data.email, password: data.password });
     
     if (error) {
