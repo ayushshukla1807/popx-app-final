@@ -70,18 +70,12 @@ export const Signup = () => {
           <div className="pt-2">
             <p className="text-[13px] font-semibold text-[#1a1a1a] mb-2">Are you an Agency? <span className="text-red-500">*</span></p>
             <div className="flex gap-6">
-              <label className="flex items-center gap-2 text-[14px] text-[#2c2c2c] cursor-pointer relative">
-                <input type="radio" value="yes" {...register('isAgency')} className="peer appearance-none absolute w-full h-full opacity-0 cursor-pointer" />
-                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#cbcbcb] peer-checked:border-brand flex items-center justify-center transition-colors">
-                  <div className="w-2.5 h-2.5 rounded-full bg-brand opacity-0 peer-checked:opacity-100 transition-opacity"></div>
-                </div>
+              <label className="flex items-center gap-2 text-[14px] text-[#2c2c2c] cursor-pointer">
+                <input type="radio" value="yes" {...register('isAgency')} className="w-5 h-5 accent-brand cursor-pointer" />
                 Yes
               </label>
-              <label className="flex items-center gap-2 text-[14px] text-[#2c2c2c] cursor-pointer relative">
-                <input type="radio" value="no" {...register('isAgency')} className="peer appearance-none absolute w-full h-full opacity-0 cursor-pointer" />
-                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#cbcbcb] peer-checked:border-brand flex items-center justify-center transition-colors">
-                  <div className="w-2.5 h-2.5 rounded-full bg-brand opacity-0 peer-checked:opacity-100 transition-opacity"></div>
-                </div>
+              <label className="flex items-center gap-2 text-[14px] text-[#2c2c2c] cursor-pointer">
+                <input type="radio" value="no" {...register('isAgency')} className="w-5 h-5 accent-brand cursor-pointer" />
                 No
               </label>
             </div>

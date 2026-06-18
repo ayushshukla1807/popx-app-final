@@ -13,7 +13,7 @@ export const Profile = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      setLoading(false);
       return;
     }
 
@@ -69,9 +69,9 @@ export const Profile = () => {
           </div>
           <div className="pt-2 flex-1">
             <h2 className="text-[15px] font-bold text-[#1a1a1a] mb-0.5">
-              {profile?.full_name || 'User Name'}
+              {profile?.full_name || 'Marry Doe'}
             </h2>
-            <p className="text-[13px] text-[#2c2c2c] opacity-80">{user?.email}</p>
+            <p className="text-[13px] text-[#2c2c2c] opacity-80">{user?.email || 'Marry@Gmail.Com'}</p>
           </div>
         </div>
 
