@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import toast from 'react-hot-toast';
 import { loginSchema } from '../schemas/authSchema';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
@@ -12,19 +13,18 @@ import { ChevronLeft } from 'lucide-react';
 export const Login = () => {
   const navigate = useNavigate();
   const { signIn } = useAuth();
-  const [authError, setAuthError] = useState('');
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(loginSchema)
   });
 
   const onSubmit = async (data) => {
-    setAuthError('');
     const { error } = await signIn({ email: data.email, password: data.password });
     
     if (error) {
-      setAuthError(error.message);
+      toast.error(error.message);
     } else {
+      toast.success('Welcome back!');
       navigate('/profile');
     }
   };
@@ -68,8 +68,6 @@ export const Login = () => {
             error={errors.password?.message} 
           />
         </div>
-
-        {authError && <p className="text-sm text-red-500 mt-2">{authError}</p>}
 
         <div className="mt-6">
           <Button type="submit" disabled={isSubmitting} className="w-full bg-[#CBCBCB] text-white hover:bg-[#b8b8b8]">

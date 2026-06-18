@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import toast from 'react-hot-toast';
 import { signupSchema } from '../schemas/authSchema';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
@@ -12,14 +12,12 @@ import { ChevronLeft } from 'lucide-react';
 export const Signup = () => {
   const navigate = useNavigate();
   const { signUp } = useAuth();
-  const [authError, setAuthError] = useState('');
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(signupSchema)
   });
 
   const onSubmit = async (data) => {
-    setAuthError('');
     const { error } = await signUp({
       email: data.email,
       password: data.password,
@@ -34,8 +32,9 @@ export const Signup = () => {
     });
 
     if (error) {
-      setAuthError(error.message);
+      toast.error(error.message);
     } else {
+      toast.success('Account created successfully!');
       navigate('/profile');
     }
   };
@@ -89,8 +88,6 @@ export const Signup = () => {
             {errors.isAgency && <p className="text-xs text-red-500 mt-2">{errors.isAgency.message}</p>}
           </div>
         </div>
-
-        {authError && <p className="text-sm text-red-500 mb-4">{authError}</p>}
 
         <div className="mt-8">
           <Button type="submit" disabled={isSubmitting} className="w-full">

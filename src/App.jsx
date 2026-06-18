@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
 import { Layout } from './components/Layout';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
@@ -13,10 +15,18 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={
+          <ProtectedRoute requireAuth={false}><Landing /></ProtectedRoute>
+        } />
+        <Route path="/login" element={
+          <ProtectedRoute requireAuth={false}><Login /></ProtectedRoute>
+        } />
+        <Route path="/register" element={
+          <ProtectedRoute requireAuth={false}><Signup /></ProtectedRoute>
+        } />
+        <Route path="/profile" element={
+          <ProtectedRoute requireAuth={true}><Profile /></ProtectedRoute>
+        } />
       </Routes>
     </AnimatePresence>
   );
@@ -28,6 +38,7 @@ function App() {
       <Router>
         <Layout>
           <AnimatedRoutes />
+          <Toaster position="top-center" toastOptions={{ className: 'text-sm' }} />
         </Layout>
       </Router>
     </AuthProvider>
